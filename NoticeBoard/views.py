@@ -17,19 +17,6 @@ def index(request):
        "form" : NewSearchForm()
     })
 
-def modIndex(request) :
-   currentDate = datetime.datetime.now()
-   if request.method == "POST":
-        form = NewSearchForm(request.POST)
-        if form.is_valid() :
-            txt = form.cleaned_data["search"]
-            return render(request, "NoticeBoard/modPresent.html",{
-                "text" : txt,
-                "notice":message.objects.all().order_by('year', 'month', 'day'),
-                "day":currentDate.day,
-                "month":currentDate.month,
-                "year":currentDate.year,
-            })
 
 def past(request):
    currentDate = datetime.datetime.now()
@@ -41,19 +28,6 @@ def past(request):
        "form" : NewSearchForm()
     })
 
-def modPast(request) :
-   currentDate = datetime.datetime.now()
-   if request.method == "POST":
-        form = NewSearchForm(request.POST)
-        if form.is_valid() :
-            txt = form.cleaned_data["search"]
-            return render(request, "NoticeBoard/modPast.html",{
-                "text" : txt,
-                "notice":message.objects.all().order_by('-year', '-month', '-day'),
-                "day":currentDate.day,
-                "month":currentDate.month,
-                "year":currentDate.year,
-            })
 
 def future(request):
    currentDate = datetime.datetime.now()
@@ -65,16 +39,3 @@ def future(request):
        "form" : NewSearchForm()
     })
 
-def modFuture(request) :
-   currentDate = datetime.datetime.now()
-   if request.method == "POST":
-        form = NewSearchForm(request.POST)
-        if form.is_valid() :
-            txt = form.cleaned_data["search"]
-            return render(request, "NoticeBoard/modFuture.html",{
-                "text" : txt,
-                "notice":message.objects.all().order_by('year', 'month', 'day'),
-                "day":currentDate.day,
-                "month":currentDate.month,
-                "year":currentDate.year,
-            })
