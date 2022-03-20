@@ -3,7 +3,8 @@
 {% block body %}
 <nav>
     <div class="heading">
-        <h4>Campus Notice Board</h4>
+        <div class="imageIcon"><img src="../../static/img/favicon.ico" style="width: 100%;" alt="noticeIcon"></div>
+        <div class="title"><h4 style="margin: auto;">Campus Notice Board</h4></div>
     </div>
 
     <ul class="nav-links">
@@ -18,11 +19,6 @@
 {% block body2 %}
 <div class="welcomemsg">
     <h3> Upcoming Events </h3>
-    <form action="{% url 'NoticeBoard:modFuture' %}" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit">
-    </form>
 </div>
 
 <div class="container">
