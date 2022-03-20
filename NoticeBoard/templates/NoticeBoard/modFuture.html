@@ -1,16 +1,25 @@
 {% extends "NoticeBoard/layout.html" %}
-{% block head %}
-<a href="{% url 'home:index' %}" class="w3-bar-item w3-button w3-padding-large">Home</a>
-<a href="{% url 'NoticeBoard:index' %}"
-                class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-white">NoticeBoard</a>
-{% endblock %}
-{% block body %}
-<h1><center> Upcoming Events </center></h1>
-<div class="container">
-		
-    {% for nt in notice %}
-            {% if text == nt.organiser %}
 
+{% block body %}
+    <nav>
+        <div class="heading">
+          <h4>Campus Notice Board</h4>
+        </div>
+    
+        <ul class="nav-links">
+          <li><a href="{% url 'home:index' %}">Home</a></li>
+          <li><a href="{% url 'NoticeBoard:index' %}">Today's Schedule</a></li>
+          <li><a href="{% url 'NoticeBoard:past' %}">Past Events</a></li>
+          <li><a class="active" href="{% url 'NoticeBoard:future' %}">Upcoming Events</a></li>
+        </ul>
+    </nav>
+
+
+    <h3> Upcoming Events </h1>
+        
+    <div class="container">
+    {% for nt in notice %}
+        {% if text == nt.organiser %}
             {% if year < nt.year %}
             <div class="notice">
                 {{nt.organiser}} is going to organise a lecture on {{ nt.topic }} at {{ nt.location }} on {{nt.day}}/{{nt.month}}/{{nt.year}} at {{ nt.time }}
@@ -32,15 +41,8 @@
                     {% endif %}
                 {% endif %}
             {% endif %}
-
-            {% endif %}
-        
+        {% endif %}
     {% endfor %}
+    </div>
 
-	
-</div>
-  <div class="pagenumber"> 
-<a href="{% url 'NoticeBoard:future' %}"> Move Back to Upcoming Events </a>
-  </div>
-		
-  {% endblock %}
+{% endblock %}

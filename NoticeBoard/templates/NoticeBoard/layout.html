@@ -3,118 +3,162 @@
 <html>
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" , initial-scale="1.0">
+    <title> Campus Notices </title>
     <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" />
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        NOTICEBOARD
-    </title>
     <style type="text/css">
-        body {
-            background-color: lightsalmon;
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
         }
 
-        .container {
-            margin: 50px 50px 100px 50px;
-            margin-bottom: 50px;
+        .body-text {
+            font-family: Arial, Helvetica, sans-serif;
+            align-items: center;
+            justify-content: space-around;
+            background-color: whitesmoke;
+            color: black;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            min-height: 8vh;
             background-color: white;
-            padding: 10px 10px 10px 10px;
+            font-family: Arial, Helvetica, sans-serif;
+
+            box-sizing: border-box;
+            /* border: 2px solid coral; */
+            box-shadow: 5px;
+            border-radius: 0.5em;
+            padding: 1em;
+            box-shadow: -5px 5px 20px darkslategrey;
+            margin: 0.5em;
         }
 
-        .container .notice {
-            display: block;
-            font-size: 1.5em;
-            margin-top: 0px;
-            margin-bottom: 1px;
-            border-bottom: 0.5px solid black;
-            color: black;
-
+        .nav-links {
+            display: flex;
+            justify-content: space-around;
+            width: 50%;
         }
 
-        .container .notice a:link,
-        .container .notice a:visited {
+        .nav-links li {
+            list-style: none;
+        }
+
+        .heading {
+            color: darkslategray;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 25px;
+        }
+
+        .nav-links a {
+            color: gray;
             text-decoration: none;
+            letter-spacing: 1px;
+            font-weight: bold;
+            font-size: 16px;
+            padding: 14px 16px;
+        }
+
+        .nav-links li a:hover:not(.active) {
+            background-color: cornsilk;
+
+        }
+
+        .nav-links li a.active {
+            background-color: wheat;
             color: black;
         }
 
-        .container .notice a:hover {
-            background-color: grey;
-        }
-
-        .searchbox {
-            margin: 80px 50px 0px 50px;
-            display: block;
-            font-size: 1.5em;
-            width: 300px;
+        .notice {
+            display: flex;
+            float: right;
+            margin: 0.5em;
+            margin-right: 4.8em;
+            min-height: 6vh;
             background-color: white;
+            box-sizing: border-box;
+            /* border: 2px solid coral; */
+            box-shadow: 5px;
+            border-radius: 0.5em;
+            padding: 1em;
+            box-shadow: -5px 5px 10px black;
+            width: 50%;
         }
 
-        .pagenumber {
-            display: block;
-            background-color: lightsalmon;
-            font-size: 1.5em;
-            width: 1000px;
-            color: black;
-            text-decoration: none;
-            padding: 1px;
+        .welcomemsg {
             text-align: center;
-            margin: 10px 10px 10px 10px;
+            align-items: center;
+            padding: 1em;
+            margin: 0.5em;
+            margin-right: 4.8em;
+            margin-bottom: 2em;
+            float: right;
+            width: 50%;
+            box-sizing: border-box;
+            border-radius: 2em;
+            border-color: black;
+            box-shadow: -5px 5px 10px black;
         }
 
-        .pagenumber a:link,
-        .pagenumber a:visited {
-            text-decoration: none;
-            background-color: darkred;
-            color: whitesmoke;
+        .sidebar {
+            float: left;
+            padding: 2em;
+            margin: 0.5em;
+            margin-left: 4.8em;
+            display: block;
 
+            box-sizing: border-box;
+            border-radius: 0.5em;
+            border-color: black;
+            box-shadow: -5px 5px 10px black;
+
+            color: darkslategray;
+            background: wheat;
         }
 
-        .pagenumber a:hover {
-            background-color: gray;
+        .sidebar h2{
+            text-align: center;
+            padding: auto;
+        }
+
+        .sidebar h2 hr{
+            text-align: center;
+            padding: auto;
+        }
+
+        .sidebar h4{
+            padding: 0.5em;
+            cursor: pointer;
         }
     </style>
+
+    <script type="text/javascript">
+        function activateFunction(){
+            document.getElementsByName("img").style.color = "black";
+        }
+    </script>
 </head>
 
-<body>
-    <!-- Navbar -->
-    <div class="w3-top">
-        <div class="w3-bar w3-red w3-card w3-left-align w3-large">
-            <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red"
-                href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i
-                    class="fa fa-bars"></i></a>
-            {% block head %}
-            {% endblock %}
-            <a href="{% url 'lost:index' %}"
-                class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Lost and Found</a>
-            <a href="https://avvarisreedhar.github.io/IITR-Campus-guide/attributes/" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" target="_blank">Explore</a>
-        </div>
-
-        <!-- Navbar on small screens -->
-        <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
-            <a href="{% url 'NoticeBoard:index' %}" class="w3-bar-item w3-button w3-padding-large">NoticeBoard</a>
-            <a href="{% url 'lost:index' %}" class="w3-bar-item w3-button w3-padding-large">Lost and Found</a>
-            <a href="https://avvarisreedhar.github.io/IITR-Campus-guide/attributes/" class="w3-bar-item w3-button w3-padding-large" target="_blank">Explore</a>
-        </div>
-    </div>
-    <p>
-        <br>
-        <br>
-    </p>
+<body class="body-text">
     {% block body %}
     {% endblock %}
-    <script>
-        // Used to toggle the menu on small screens when clicking on the menu button
-        function myFunction() {
-            var x = document.getElementById("navDemo");
-            if (x.className.indexOf("w3-show") == -1) {
-                x.className += " w3-show";
-            } else {
-                x.className = x.className.replace(" w3-show", "");
-            }
-        };
-    </script>
-
+    <div class="sidebar">
+        <h2>Choose Groups <hr> </h2>
+        <h4 class="all">All Campus Groups</h4> <hr>
+        <h4 class="img" onclick="activateFunction()">Information Management Group (IMG)</h4> <hr>
+        <h4 class="infosec">Information Security Group (InfoSec IITR)</h4> <hr>
+        <h4 class="mdg">Mobile Development Group (MDG)</h4> <hr>
+        <h4 class="sds">Software Development Section (SDSLabs)</h4> <hr>
+    </div>
+    {% block body2 %}
+    {% endblock %}
+    
 </body>
 
 </html>
