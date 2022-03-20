@@ -139,8 +139,32 @@
     </style>
 
     <script type="text/javascript">
-        function activateFunction(){
-            document.getElementsByName("img").style.color = "black";
+        function activateFunction(x){
+            var groups = document.getElementsByClassName("grp");
+            groups[x].style.color = "black";
+            for(var y = 0; y < 5; y++){
+                if(y == x) continue;
+                else groups[y].style.color = "darkslategray";
+            }
+
+            var noticeSet = document.getElementsByClassName("notice");
+            for(var i = 0; i < noticeSet.length; i++){
+                var message = noticeSet[i].textContent.trim();
+                var group = "";
+                var j = 0;
+                for(j = 0; j < message.length; j++){
+                    // console.log(message.charAt(j) + "\n");
+                    if(message.charAt(j) == ' ') break;
+                }
+
+                group = message.substring(0, j);
+                // console.log("Hi" + j + group + message);
+                if(group == groups[x].id || groups[x].id == "All"){
+                    noticeSet[i].style.display = "block";
+                }else{
+                    noticeSet[i].style.display = "none";
+                }
+            }
         }
     </script>
 </head>
@@ -150,11 +174,11 @@
     {% endblock %}
     <div class="sidebar">
         <h2>Choose Groups <hr> </h2>
-        <h4 class="all">All Campus Groups</h4> <hr>
-        <h4 class="img" onclick="activateFunction()">Information Management Group (IMG)</h4> <hr>
-        <h4 class="infosec">Information Security Group (InfoSec IITR)</h4> <hr>
-        <h4 class="mdg">Mobile Development Group (MDG)</h4> <hr>
-        <h4 class="sds">Software Development Section (SDSLabs)</h4> <hr>
+        <h4 class="grp" id = "All" onclick="activateFunction(0)" style="color: black;">All Campus Groups</h4> <hr>
+        <h4 class="grp" id = "IMG" onclick="activateFunction(1)">Information Management Group (IMG)</h4> <hr>
+        <h4 class="grp" id = "InfoSec" onclick="activateFunction(2)">Information Security Group (InfoSec IITR)</h4> <hr>
+        <h4 class="grp" id = "MDG" onclick="activateFunction(3)">Mobile Development Group (MDG)</h4> <hr>
+        <h4 class="grp" id = "SDS" onclick="activateFunction(4)">Software Development Section (SDSLabs)</h4> <hr>
     </div>
     {% block body2 %}
     {% endblock %}
