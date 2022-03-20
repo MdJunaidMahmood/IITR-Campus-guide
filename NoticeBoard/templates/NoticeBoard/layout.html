@@ -72,7 +72,7 @@
             text-decoration: none;
             letter-spacing: 1px;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 18px;
             padding: 14px 16px;
         }
 
@@ -87,7 +87,7 @@
         }
 
         .notice {
-            display: flex;
+            /* display: flex; */
             float: right;
             margin: 0.5em;
             margin-right: 4.8em;
@@ -147,6 +147,23 @@
             padding: 0.5em;
             cursor: pointer;
         }
+
+        .sorryMsg{
+            display: none;
+            float: right;
+            margin: 0.5em;
+            margin-right: 4.8em;
+            min-height: 6vh;
+            background-color: white;
+            box-sizing: border-box;
+            text-align: center;
+            /* border: 2px solid coral; */
+            box-shadow: 5px;
+            border-radius: 0.5em;
+            padding: 1em;
+            box-shadow: -5px 5px 10px black;
+            width: 50%;
+        }
     </style>
 
     <script type="text/javascript">
@@ -159,12 +176,12 @@
             }
 
             var noticeSet = document.getElementsByClassName("notice");
+            var count = 0;
             for(var i = 0; i < noticeSet.length; i++){
                 var message = noticeSet[i].textContent.trim();
                 var group = "";
                 var j = 0;
                 for(j = 0; j < message.length; j++){
-                    // console.log(message.charAt(j) + "\n");
                     if(message.charAt(j) == ' ') break;
                 }
 
@@ -172,15 +189,23 @@
                 // console.log("Hi" + j + group + message);
                 if(group == groups[x].id || groups[x].id == "All"){
                     noticeSet[i].style.display = "block";
+                    count = 1;
+                    var sorry = document.getElementsByClassName("sorryMsg")[0];
+                    sorry.style.display = "none";
                 }else{
                     noticeSet[i].style.display = "none";
                 }
+            }
+            console.log(count);
+            if(count == 0){
+                var sorry = document.getElementsByClassName("sorryMsg")[0];
+                sorry.style.display = "block";
             }
         }
     </script>
 </head>
 
-<body class="body-text">
+<body class="body-text" onload="activateFunction(0)">
     {% block body %}
     {% endblock %}
     <div class="sidebar">

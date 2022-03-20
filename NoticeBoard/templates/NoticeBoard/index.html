@@ -19,7 +19,7 @@
 {% block body2 %}
 
 <div class="welcomemsg">
-    <h3> Today's Schedule </h3><br />
+    <h3> Below mentioned are those events that are scheduled for today. <br> In case you are interested, you are requested to come at the given venue appropriately. </h3>
 </div>
 <div class="container">
     {% for nt in notice %}
@@ -35,6 +35,10 @@
     {% endif %}
 
     {% endfor%}
+
+    <div class="sorryMsg">
+        No Events Found!!!
+    </div>
 
 </div>
 
