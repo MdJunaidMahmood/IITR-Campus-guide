@@ -5,13 +5,15 @@
 <nav>
     <div class="heading">
         <div class="imageIcon"><img src="../../static/img/favicon.ico" style="width: 100%;" alt="noticeIcon"></div>
-        <div class="title"><h4 style="margin: auto;">Campus Notice Board</h4></div>
+        <div class="title">
+            <h4 style="margin: auto;">Campus Notice Board</h4>
+        </div>
     </div>
     <ul class="nav-links">
         <li><a href="{% url 'home:index' %}">Home</a></li>
-        <li><a class="active" href="{% url 'NoticeBoard:index' %}">Today's Schedule</a></li>
-        <li><a href="{% url 'NoticeBoard:past' %}">Past Events</a></li>
-        <li><a href="{% url 'NoticeBoard:future' %}">Upcoming Events</a></li>
+        <li><a class="active" href="{% url 'NoticeBoard:index' %}">Today</a></li>
+        <li><a href="{% url 'NoticeBoard:past' %}">Earlier</a></li>
+        <li><a href="{% url 'NoticeBoard:future' %}">Upcoming</a></li>
     </ul>
 </nav>
 {% endblock %}
@@ -19,27 +21,27 @@
 {% block body2 %}
 
 <div class="welcomemsg">
-    <h3> Below mentioned are those events that are scheduled for today. <br> In case you are interested, you are requested to come at the given venue appropriately. </h3>
+    <h3> Below mentioned are those events that are scheduled for today. <br> In case you are interested, you are
+        requested to come at the given venue appropriately. </h3>
 </div>
-<div class="container">
-    {% for nt in notice %}
 
-    {% if year == nt.year %}
-    {% if month == nt.month %}
-    {% if day == nt.day %}
-    <div class="notice">
-        {{nt.organiser}} is going to organise a lecture on {{ nt.topic }} at {{ nt.location }} from {{ nt.time }}
-    </div>
-    {% endif %}
-    {% endif %}
-    {% endif %}
+{% for nt in notice %}
 
-    {% endfor%}
-
-    <div class="sorryMsg">
-        No Events Found!!!
-    </div>
-
+{% if year == nt.year %}
+{% if month == nt.month %}
+{% if day == nt.day %}
+<div class="notice">
+    {{nt.organiser}} is going to organise a lecture on {{ nt.topic }} at {{ nt.location }} from {{ nt.time }}
 </div>
+{% endif %}
+{% endif %}
+{% endif %}
+
+{% endfor%}
+
+<div class="sorryMsg">
+    No Events Found!!!
+</div>
+
 
 {% endblock %}
